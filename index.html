@@ -1,0 +1,50 @@
+
+<html>
+<head>
+<title>Discord Bubbletext Translator</title>
+<style>
+<script>
+    $(document).ready(function(){ 
+	$('body').find('img[src$="https://cdn.rawgit.com/000webhost/logo/e9bd13f7/footer-powered-by-000webhost-white2.png"]').remove();
+    }); 
+</script>
+.convert_button{
+	width:425px;
+}
+
+.convert_header{
+	text-align: center;
+}
+</style>
+</head>
+<body>
+<h1 class="convert_header">Discord Bubbletext Translator</h1>
+<p><i>Enter text to convert here:<i></p>
+<textarea rows="4" cols="50" id="input_text"></textarea>
+<br>
+<button onclick="convert()" class="convert_button">Convert Text</button>
+<br><br>
+<p>Output:</p>
+<textarea rows="10" cols="50" id="final_text"></textarea>
+<script>
+function isLetter(c) {
+  return c.toLowerCase() != c.toUpperCase();
+}
+
+function convert() {
+	var text = document.getElementById("input_text").value;
+	console.log("[LOG] Converting text: " + text);
+	var split_array = text.split("");
+	var final_string = "";
+	for(var i = 0; i < split_array.length; i++){
+		var value = split_array[i];
+		if(isLetter(value)){
+			final_string = final_string + ":regional_indicator_" + value.toLowerCase() + ": ";
+		}
+	}
+	console.log("[LOG] Result: " + final_string);
+	document.getElementById("final_text").value = final_string;
+}
+</script>
+</body>
+</html>
